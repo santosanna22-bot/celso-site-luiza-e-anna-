@@ -1,0 +1,276 @@
+/* ------------------------------------------- */
+/* 1. CONFIGURAÇÕES GLOBAIS E TIPOGRAFIA        */
+/* ------------------------------------------- */
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap');
+
+* {
+    /* Garante que padding e border não aumentem o tamanho final do elemento */
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: #f4f7f9; /* Fundo cinza claro */
+    color: #333;
+    line-height: 1.6;
+}
+
+/* ------------------------------------------- */
+/* 2. CABEÇALHO E ÍCONE DO CARRINHO             */
+/* ------------------------------------------- */
+.store-header {
+    background-color: #2c3e50; /* Azul escuro */
+    color: white;
+    padding: 20px;
+    text-align: center;
+    position: relative;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.cart-icon {
+    position: absolute;
+    top: 25px;
+    right: 30px;
+    font-size: 30px;
+    cursor: pointer;
+    background-color: #f39c12; /* Laranja */
+    padding: 8px 12px;
+    border-radius: 50%;
+    transition: transform 0.2s;
+    user-select: none; /* Impede seleção de texto */
+}
+
+.cart-icon:hover {
+    transform: scale(1.1);
+}
+
+/* ------------------------------------------- */
+/* 3. GRID DE PRODUTOS E CARDS                  */
+/* ------------------------------------------- */
+.product-grid {
+    display: grid;
+    /* Configuração padrão: 1 coluna em telas menores, adaptando para mais em telas maiores */
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); 
+    gap: 30px;
+    padding: 30px;
+    max-width: 1200px;
+    margin: 30px auto; /* Centraliza o grid */
+}
+
+.product-card {
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+    overflow: hidden;
+    text-align: center;
+    transition: transform 0.3s, box-shadow 0.3s;
+    height: 100%; /* Garante que todos os cards tenham a mesma altura */
+    display: flex;
+    flex-direction: column;
+}
+
+.product-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+}
+
+.image-container {
+    width: 100%;
+    height: 250px; /* Altura fixa para uniformizar imagens */
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #ecf0f1; /* Fundo claro para a imagem */
+}
+
+.product-image {
+    width: 90%;
+    height: 90%;
+    object-fit: contain; /* Garante que a imagem caiba sem ser cortada */
+    transition: transform 0.3s;
+}
+
+.product-card:hover .product-image {
+    transform: scale(1.05);
+}
+
+.product-info {
+    padding: 15px;
+    flex-grow: 1; /* Permite que o info ocupe o espaço restante */
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+}
+
+.product-name {
+    font-size: 1.25rem;
+    color: #2c3e50;
+    margin-bottom: 5px;
+}
+
+.product-price {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #e74c3c; /* Vermelho para destaque de preço */
+    margin-bottom: 15px;
+    margin-top: auto; /* Empurra o preço e o botão para baixo */
+}
+
+.buy-button {
+    background-color: #f39c12; /* Laranja - Cor de Ação */
+    color: white;
+    border: none;
+    padding: 10px 25px;
+    border-radius: 5px;
+    font-size: 1rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    width: 100%;
+}
+
+.buy-button:hover {
+    background-color: #e67e22; /* Laranja mais escuro no hover */
+}
+
+
+/* ------------------------------------------- */
+/* 4. ESTILIZAÇÃO DO PAINEL LATERAL DO CARRINHO  */
+/* ------------------------------------------- */
+
+.cart-panel {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 100%; /* Largura total em mobile */
+    max-width: 350px; /* Largura máxima em desktop */
+    height: 100%;
+    background-color: #fff;
+    box-shadow: -5px 0 15px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    
+    /* Configuração inicial: Escondido fora da tela */
+    transform: translateX(100%);
+    transition: transform 0.4s ease-in-out;
+}
+
+.cart-panel.open {
+    /* Estado aberto: Visível na tela */
+    transform: translateX(0);
+}
+
+.cart-panel h2 {
+    color: #2c3e50;
+    border-bottom: 2px solid #ecf0f1;
+    padding-bottom: 10px;
+    margin-bottom: 15px;
+}
+
+.close-btn {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: #333;
+    padding: 5px;
+    line-height: 1;
+}
+
+.cart-list {
+    list-style: none;
+    flex-grow: 1; /* Permite que a lista ocupe o espaço restante */
+    overflow-y: auto; /* Adiciona scroll se a lista for muito longa */
+    padding: 0;
+    margin-bottom: 20px;
+}
+
+.cart-list li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 0;
+    border-bottom: 1px dashed #eee;
+    font-size: 0.95rem;
+}
+
+.cart-list li:last-child {
+    border-bottom: none;
+}
+
+.item-name {
+    flex-grow: 1;
+    font-weight: 500;
+    color: #333;
+}
+
+.item-details {
+    color: #7f8c8d;
+    margin-right: 10px;
+    text-align: right;
+}
+
+.remove-btn {
+    background-color: #e74c3c; /* Vermelho */
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    line-height: 1;
+    font-size: 0.8rem;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.remove-btn:hover {
+    background-color: #c0392b;
+}
+
+.empty-message {
+    text-align: center;
+    color: #95a5a6;
+    padding: 20px;
+    font-style: italic;
+}
+
+.cart-footer {
+    padding-top: 15px;
+    border-top: 2px solid #2c3e50;
+    text-align: right;
+}
+
+.cart-footer p {
+    font-size: 1.3rem;
+    font-weight: 700;
+    margin-bottom: 10px;
+}
+
+.cart-footer #cart-total {
+    color: #27ae60; /* Verde para destaque do total */
+}
+
+.checkout-btn {
+    background-color: #27ae60; /* Verde - Finalizar */
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 5px;
+    font-size: 1.1rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    width: 100%;
+}
+
+.checkout-btn:hover {
+    background-color: #2ecc71;
+}

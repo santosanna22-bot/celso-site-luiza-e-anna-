@@ -1,0 +1,152 @@
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mega Cell - Loja de Smartphones</title>
+    <link rel="stylesheet" href="styles.css"> 
+    <style>
+        /* Apenas um CSS rápido para o efeito de "flash" no ícone do carrinho */
+        .flash-cart {
+            animation: flash 0.5s;
+        }
+        @keyframes flash {
+            0% { transform: scale(1); background-color: transparent; }
+            50% { transform: scale(1.2); background-color: #ffcc00; border-radius: 50%; }
+            100% { transform: scale(1); background-color: transparent; }
+        }
+        
+        /* CSS para o link do produto */
+        .product-link {
+            text-decoration: none; /* Remove sublinhado */
+            color: inherit; /* Mantém a cor do texto do card */
+            display: block; /* Garante que o link ocupe todo o card */
+        }
+        /* Garantir que o hover do link não atrapalhe o card */
+        .product-link:hover .product-card {
+            transform: translateY(-5px); 
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+        }
+    </style>
+</head>
+<body>
+
+    <header class="store-header">
+        <div class="cart-icon" title="Ver Carrinho" onclick="toggleCart()">
+            🛒 <span id="cart-counter" class="counter">0</span>
+        </div>
+        <h1>Mega Cell: Sua Loja de Smartphones</h1>
+        <p>Tecnologia de ponta ao seu alcance.</p>
+    </header>
+
+    <div class="product-grid">
+
+        <a href="produto/ultra-x.html" class="product-link">
+            <div class="product-card item-premium">
+                <div class="image-container">
+                    <img src="imagem/411de578293d219de9f0770203a1a963.webp" alt="Smartphone Ultra X" class="product-image">
+                </div>
+                <div class="product-info">
+                    <h3 class="product-name">Smartphone Ultra X 5G</h3>
+                    <p class="product-price">R$ 6.999,00</p>
+                    <button class="buy-button" 
+                            onclick="addToCart(this); event.stopPropagation();" 
+                            data-name="Smartphone Ultra X 5G" 
+                            data-price="6999.00">COMPRAR</button>
+                </div>
+            </div>
+        </a>
+
+        <a href="produto/compact-pro.html" class="product-link">
+            <div class="product-card item-medio">
+                <div class="image-container">
+                    <img src="imagem/740x740_660301249A-1.webp" alt="Celular Compact Pro" class="product-image">
+                </div>
+                <div class="product-info">
+                    <h3 class="product-name">Celular Compact Pro</h3>
+                    <p class="product-price">R$ 2.450,00</p>
+                    <button class="buy-button" 
+                            onclick="addToCart(this); event.stopPropagation();" 
+                            data-name="Celular Compact Pro" 
+                            data-price="2450.00">COMPRAR</button>
+                </div>
+            </div>
+        </a>
+
+        <a href="produto/phone-lite.html" class="product-link">
+            <div class="product-card item-medio">
+                <div class="image-container">
+                    <img src="imagem/Xiaomi-Mi-11-Lite-5g-Ne-Global-Dual-Sim-256gb-8GB-Ram-Tela-6-55-Peach-Pink_1727123526_gg.webp" alt="Phone Lite 5G" class="product-image">
+                </div>
+                <div class="product-info">
+                    <h3 class="product-name">Phone Lite 5G</h3>
+                    <p class="product-price">R$ 1.899,00</p>
+                    <button class="buy-button" 
+                            onclick="addToCart(this); event.stopPropagation();" 
+                            data-name="Phone Lite 5G" 
+                            data-price="1899.00">COMPRAR</button>
+                </div>
+            </div>
+        </a>
+
+        <a href="produto/smart-plus-max.html" class="product-link">
+            <div class="product-card item-plus">
+                <div class="image-container">
+                    <img src="imagem/spc-smart-plus-89716-g-alt.jpg" alt="Smart Plus Max" class="product-image">
+                </div>
+                <div class="product-info">
+                    <h3 class="product-name">Smart Plus Max</h3>
+                    <p class="product-price">R$ 3.800,00</p>
+                    <button class="buy-button" 
+                            onclick="addToCart(this); event.stopPropagation();" 
+                            data-name="Smart Plus Max" 
+                            data-price="3800.00">COMPRAR</button>
+                </div>
+            </div>
+        </a>
+
+        <a href="produto/positivo-celular.html" class="product-link">
+            <div class="product-card item-basico">
+                <div class="image-container">
+                    <img src="imagem/06c237f24312d105bcc4d3ca36a81f92.webp" alt="Modelo Básico Essencial" class="product-image">
+                </div>
+                <div class="product-info">
+                    <h3 class="product-name">positivo celular</h3>
+                    <p class="product-price">R$ 950,00</p>
+                    <button class="buy-button" 
+                            onclick="addToCart(this); event.stopPropagation();" 
+                            data-name="Modelo Básico Essencial" 
+                            data-price="950.00">COMPRAR</button>
+                </div>
+            </div>
+        </a>
+
+        <a href="produto/gamer-xtreme.html" class="product-link">
+            <div class="product-card item-gamer">
+                <div class="image-container">
+                    <img src="imagem/Smartphone-Asus-Rog-Phone-8-Pro-Edition-1TB-5g-2-Snapdragon-8-Gen3-24gb-Ram-Tela-6-78-AmoLED-165hz-C-m-Tripla-50mp-32mp-Aeroactive-Cooler-Black_1722521456_gg.webp" alt="Gamer Xtreme Edition" class="product-image">
+                </div>
+                <div class="product-info">
+                    <h3 class="product-name">Gamer Xtreme Edition</h3>
+                    <p class="product-price">R$ 5.500,00</p>
+                    <button class="buy-button" 
+                            onclick="addToCart(this); event.stopPropagation();" 
+                            data-name="Gamer Xtreme Edition" 
+                            data-price="5500.00">COMPRAR</button>
+                </div>
+            </div>
+        </a>
+
+    </div>
+    
+    <div id="cart-panel" class="cart-panel">
+        <h2>🛒 Seu Carrinho de Compras 🛒</h2>
+        <button class="close-btn" onclick="toggleCart()">X</button>
+        <ul id="cart-list" class="cart-list">
+            <li class="empty-message">Nenhum celular selecionado...</li>
+        </ul>
+        <div class="cart-footer">
+            <p>Total: <span id="cart-total">R$ 0,00</span></p>
+            <button class="checkout-btn">Finalizar Pedido</button>
+        </div>
+    </div>
+    
+    <script>
